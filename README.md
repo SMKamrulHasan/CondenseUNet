@@ -58,7 +58,8 @@ Figure shows segmentation results and the ground truth masks for both 2D and 3D 
 Quantitative evaluation of the segmentation results in terms of Mean Dice score (%) with Hausdorff distance(in mm),
 no. of parameters (×106 ), and the clinical indices evaluated on the ACDC dataset for LV, RV blood-pool and LV-myocardium compared across several best performing networks, including L-CONet. The statistical significance of the results for L-CO-Net model compared against five other base architectures.
 
-<img width="674" alt="Screen Shot 2020-05-01 at 11 04 22 PM" src="https://user-images.githubusercontent.com/42282006/80853609-206b1a00-8c00-11ea-8d3b-77fc5a7ee8d4.png">
+<img width="672" alt="Screen Shot 2020-05-01 at 11 39 52 PM" src="https://user-images.githubusercontent.com/42282006/80854316-24e60180-8c05-11ea-94a3-7d002c75a8c3.png">
+
 
 
 # [How to Run]()
