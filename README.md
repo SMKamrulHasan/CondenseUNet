@@ -16,9 +16,9 @@ Our code is compatible with python 3.7 or onward.
 
 We depend on some python packages which need to be installed by the user:
 
-⋅⋅* Tensorflow
-⋅⋅* tqdm
-⋅⋅* SimpleITK
+* Tensorflow
+* tqdm
+* SimpleITK
 ⋅⋅* sklearn
 ⋅⋅* numpy
 ⋅⋅* nibabel
