@@ -20,14 +20,17 @@ We depend on some python packages which need to be installed by the user:
 * nibabel
 * h5py
 
+# Authors 
+*S. M. Kamrul Hasan [email](sh3190@rit.edu) 
+*Cristian A. Linte
 
 # Contents 
 
-* Data
-* Method
-* Training
-* Results
-* [How to Run]()
+* [Data]
+* [Method]
+* [Training]
+* [Results]
+* [How to Run]
 
 
 
