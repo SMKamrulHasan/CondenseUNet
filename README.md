@@ -42,11 +42,19 @@ We evaluate CondenseUNet architectures for segmentation as well as clinical para
 
 Our proposed L-CO-Net framework substitutes the concept of both standard convolution and group convolution (G-Conv) with learned group-convolution (LGConv). While the standard convolution needs an increased level of computation, i.e. O(Ii x Oo), and concurrently, the pre-defined use of filters in each group convolution restricts its representation capability, these aforementioned problems are mitigated by introducing LG-Conv that learns group convolution dynamically during training through a multi-stage scheme.
 
+![5](https://user-images.githubusercontent.com/42282006/80853422-ccac0100-8bfe-11ea-8c4c-2326c0de7379.png)
 
-[Hasan0.pdf](https://github.com/SMKamrulHasan/CondenseUNet/files/4566979/Hasan0.pdf)
+[Training]()
+
+<img width="678" alt="Screen Shot 2020-05-01 at 10 56 46 PM" src="https://user-images.githubusercontent.com/42282006/80853458-244a6c80-8bff-11ea-8c52-913b5ff052a6.png">
+<img width="643" alt="Screen Shot 2020-05-01 at 10 56 40 PM" src="https://user-images.githubusercontent.com/42282006/80853460-26acc680-8bff-11ea-93bf-7c1533aa062b.png">
+
+
+
+[Results]()\\
+
 ![Hasan1](https://user-images.githubusercontent.com/42282006/80853394-9b333580-8bfe-11ea-9bae-7227c0431d66.png)
 ![Hasan3](https://user-images.githubusercontent.com/42282006/80853397-9d958f80-8bfe-11ea-8677-9c557db349d5.png)
-[gconv.pdf](https://github.com/SMKamrulHasan/CondenseUNet/files/4566981/gconv.pdf)
 
 
 
