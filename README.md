@@ -21,16 +21,27 @@ We depend on some python packages which need to be installed by the user:
 * h5py
 
 # Authors 
-* S. M. Kamrul Hasan [sh3190@rit.edu]()
+* S. M. Kamrul Hasan ([sh3190@rit.edu])()
 * Cristian A. Linte
 
 # Contents 
 
-* [Data]
-* [Method]
-* [Training]
-* [Results]
+* [Data]()
+* [Method]()
+* [Training]()
+* [Results]()
 * [How to Run]()
+
+
+
+[Data]() \\
+For this study, we used the ACDC dataset, which is composed of short-axis cardiac cine-MR images acquired from 100 different patients divided into 5 evenly distributed subgroups according to their cardiac condition: normal- NOR, myocardial infarction- MINF, dilated cardiomyopathy- DCM, hypertrophic cardiomyopathyHCM, and abnormal right ventricle- ARV, available as a part of the STACOM 2017 ACDC challenge.
+
+[Method]() \\
+We evaluate CondenseUNet architectures for segmentation as well as clinical parameter estimation. The output of the model is a pixel-by-pixel mask that shows the class of each pixel.
+
+Our proposed L-CO-Net framework substitutes the concept of both standard convolution and group convolution (G-Conv) with learned group-convolution (LGConv). While the standard convolution needs an increased level of computation, i.e. O(Ii x Oo), and concurrently, the pre-defined use of filters in each group convolution restricts its representation capability, these aforementioned problems are mitigated by introducing LG-Conv that learns group convolution dynamically during training through a multi-stage scheme
+
 
 
 
