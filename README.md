@@ -28,7 +28,6 @@ We depend on some python packages which need to be installed by the user:
 
 * [Data]()
 * [Method]()
-* [Training]()
 * [Results]()
 * [How to Run]()
 
@@ -46,12 +45,6 @@ Our proposed L-CO-Net framework substitutes the concept of both standard convolu
 
 ![5](https://user-images.githubusercontent.com/42282006/80853422-ccac0100-8bfe-11ea-8c4c-2326c0de7379.png)
 
-# [Training]()
-
-<img width="678" alt="Screen Shot 2020-05-01 at 10 56 46 PM" src="https://user-images.githubusercontent.com/42282006/80853458-244a6c80-8bff-11ea-8c52-913b5ff052a6.png">
-
-
-
 
 # [Results]()
 
@@ -60,9 +53,22 @@ Figure shows segmentation results and the ground truth masks for both 2D and 3D 
 ![Hasan1](https://user-images.githubusercontent.com/42282006/80853394-9b333580-8bfe-11ea-9bae-7227c0431d66.png)
 ![Hasan3](https://user-images.githubusercontent.com/42282006/80853397-9d958f80-8bfe-11ea-8677-9c557db349d5.png)
 
+# [Table]()
 
 Quantitative evaluation of the segmentation results in terms of Mean Dice score (%) with Hausdorff distance(in mm),
-no. of parameters (×106 ), and the clinical indices evaluated on the ACDC dataset for LV, RV blood-pool and LV-myocardium compared across several best performing networks, including L-CONet. The statistical significance of the results for L-CO-Net model compared against five other baselin
+no. of parameters (×106 ), and the clinical indices evaluated on the ACDC dataset for LV, RV blood-pool and LV-myocardium compared across several best performing networks, including L-CONet. The statistical significance of the results for L-CO-Net model compared against five other base architectures.
+
+<img width="674" alt="Screen Shot 2020-05-01 at 11 04 22 PM" src="https://user-images.githubusercontent.com/42282006/80853609-206b1a00-8c00-11ea-8d3b-77fc5a7ee8d4.png">
+
+
+# [How to Run]()
+
+# [Preprocessing]()
+
+# [Train]()
+
+
+
 
 If you find this work useful for your publications, please consider citing:
 
