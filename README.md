@@ -68,6 +68,8 @@ no. of parameters (×106 ), and the clinical indices evaluated on the ACDC datas
 
 open a new terminal: (forKeras) hostname@biomed:~/cardiac$ tensorboard —logdir==training:/path/to/summary/ —host=127.0.0.1 —port=6007
 
+tensorboard —logdir==training:/home/kamrul/leon_saidur/trained_models/ACDC/SMKH_ACDC/summary/train/ —host=127.0.0.1 —port=6007
+
 alternate approach: python -m tensorboard.main --logdir=./logs
 
 
