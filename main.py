@@ -11,6 +11,12 @@ import math
 import warnings
 import models
 import numpy as np
+import nibabel as nib
+import numpy as np
+import torch
+from torch.utils.data import Dataset
+from torchvision import transforms
+import os
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
@@ -189,31 +195,64 @@ def main():
 
     ### Data loading
 
-	class CardiacSegDataset(Dataset):
-	    def __init__(self, root, split='train', img_size=128):
-	        self.imgs = sorted(glob.glob(os.path.join(root, split, 'images', '*')))
-	        self.masks = sorted(glob.glob(os.path.join(root, split, 'masks', '*')))
-	        assert len(self.imgs) == len(self.masks) and len(self.imgs) > 0, f"No images/masks found in {root}/{split}"
-	        self.tf_img = transforms.Compose([
-	            transforms.Resize((img_size, img_size)),
-	            transforms.ToTensor(),
-	            # transforms.Grayscale(num_output_channels=1),  # if grayscale
-	        ])
-	        self.img_size = img_size
+    class NiftiCardiacSegDataset(Dataset):
+        """
+        Reads grayscale NIfTI images and masks.
+        Each subject: image.nii[.gz], mask.nii[.gz]
+        """
+        def __init__(self, root, split='train', img_size=128):
+            self.img_paths = sorted([
+                os.path.join(root, split, 'images', f)
+                for f in os.listdir(os.path.join(root, split, 'images'))
+                if f.endswith('.nii') or f.endswith('.nii.gz')
+            ])
+            self.mask_paths = sorted([
+                os.path.join(root, split, 'masks', f)
+                for f in os.listdir(os.path.join(root, split, 'masks'))
+                if f.endswith('.nii') or f.endswith('.nii.gz')
+            ])
+            assert len(self.img_paths) == len(self.mask_paths), "Mismatched image/mask pairs"
 
-	    def __len__(self): return len(self.imgs)
+            self.img_size = img_size
+            self.resize = transforms.Resize((img_size, img_size))
+            self.to_tensor = transforms.ToTensor()
 
-	    def __getitem__(self, idx):
-	        img = Image.open(self.imgs[idx]).convert('RGB')
-	        mask = Image.open(self.masks[idx])
-	        img = self.tf_img(img)
-	        mask = mask.resize((self.img_size, self.img_size), resample=Image.NEAREST)
-	        mask = torch.from_numpy(np.array(mask, dtype=np.int64))
-	        return img, mask
+        def __len__(self):
+            return len(self.img_paths)
 
-	if args.task == 'seg':
-	    train_set = CardiacSegDataset(args.data, 'train', args.img_size)
-	    val_set = CardiacSegDataset(args.data, 'val', args.img_size)
+        def __getitem__(self, idx):
+            img_nii = nib.load(self.img_paths[idx])
+            mask_nii = nib.load(self.mask_paths[idx])
+
+            img = img_nii.get_fdata().astype(np.float32)
+            mask = mask_nii.get_fdata().astype(np.int64)
+
+            # Select middle slice if 3D volume
+            if img.ndim == 3:
+                mid = img.shape[-1] // 2
+                img = img[:, :, mid]
+                mask = mask[:, :, mid]
+
+            # Normalize grayscale image (0–1)
+            img = (img - img.min()) / (img.max() - img.min() + 1e-8)
+            img = np.expand_dims(img, axis=0)  # (1, H, W)
+
+            img = torch.from_numpy(img).float()
+            mask = torch.from_numpy(mask).long()
+
+            # Resize to consistent spatial size
+            img = torch.nn.functional.interpolate(img.unsqueeze(0), size=(self.img_size, self.img_size),
+                                                  mode='bilinear', align_corners=False).squeeze(0)
+            mask = mask.unsqueeze(0).float()
+            mask = torch.nn.functional.interpolate(mask.unsqueeze(0), size=(self.img_size, self.img_size),
+                                                   mode='nearest').squeeze(0).long()
+
+            return img, mask
+
+    if args.task == 'seg':
+        train_set = NiftiCardiacSegDataset(args.data, 'train', args.img_size)
+        val_set   = NiftiCardiacSegDataset(args.data, 'val', args.img_size)
+
 	else:
         traindir = os.path.join(args.data, 'train')
         valdir = os.path.join(args.data, 'val')
