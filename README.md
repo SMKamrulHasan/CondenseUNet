@@ -37,25 +37,46 @@ We depend on some python packages which need to be installed by the user:
 
 For this study, we used the ACDC dataset, which is composed of short-axis cardiac cine-MR images acquired from 100 different patients divided into 5 evenly distributed subgroups according to their cardiac condition: normal- NOR, myocardial infarction- MINF, dilated cardiomyopathy- DCM, hypertrophic cardiomyopathyHCM, and abnormal right ventricle- ARV, available as a part of the STACOM 2017 ACDC challenge.
 
-/path/to/cardiac_dataset/
-│
-├── train/
-│   ├── images/
-│   │   ├── case001.nii.gz
-│   │   ├── case002.nii.gz
-│   │   └── ...
-│   └── masks/
-│       ├── case001.nii.gz
-│       ├── case002.nii.gz
-│       └── ...
-│
-└── val/
-    ├── images/
-    │   ├── case101.nii.gz
-    │   └── ...
-    └── masks/
-        ├── case101.nii.gz
-        └── ...
+<ul>
+  <li>/path/to/cardiac_dataset/
+    <ul>
+      <li>train/
+        <ul>
+          <li>images/
+            <ul>
+              <li>case001.nii.gz</li>
+              <li>case002.nii.gz</li>
+              <li>...</li>
+            </ul>
+          </li>
+          <li>masks/
+            <ul>
+              <li>case001.nii.gz</li>
+              <li>case002.nii.gz</li>
+              <li>...</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>val/
+        <ul>
+          <li>images/
+            <ul>
+              <li>case101.nii.gz</li>
+              <li>...</li>
+            </ul>
+          </li>
+          <li>masks/
+            <ul>
+              <li>case101.nii.gz</li>
+              <li>...</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 
 # [Method]()
