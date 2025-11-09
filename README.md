@@ -37,6 +37,27 @@ We depend on some python packages which need to be installed by the user:
 
 For this study, we used the ACDC dataset, which is composed of short-axis cardiac cine-MR images acquired from 100 different patients divided into 5 evenly distributed subgroups according to their cardiac condition: normal- NOR, myocardial infarction- MINF, dilated cardiomyopathy- DCM, hypertrophic cardiomyopathyHCM, and abnormal right ventricle- ARV, available as a part of the STACOM 2017 ACDC challenge.
 
+/path/to/cardiac_dataset/
+│
+├── train/
+│   ├── images/
+│   │   ├── case001.nii.gz
+│   │   ├── case002.nii.gz
+│   │   └── ...
+│   └── masks/
+│       ├── case001.nii.gz
+│       ├── case002.nii.gz
+│       └── ...
+│
+└── val/
+    ├── images/
+    │   ├── case101.nii.gz
+    │   └── ...
+    └── masks/
+        ├── case101.nii.gz
+        └── ...
+
+
 # [Method]()
 
 We evaluate CondenseUNet architectures for segmentation as well as clinical parameter estimation. The output of the model is a pixel-by-pixel mask that shows the class of each pixel.
@@ -44,6 +65,26 @@ We evaluate CondenseUNet architectures for segmentation as well as clinical para
 Our proposed CondenseUNetframework substitutes the concept of both standard convolution and group convolution (G-Conv) with learned group-convolution (LGConv). While the standard convolution needs an increased level of computation, i.e. O(Ii x Oo), and concurrently, the pre-defined use of filters in each group convolution restricts its representation capability, these aforementioned problems are mitigated by introducing LG-Conv that learns group convolution dynamically during training through a multi-stage scheme.
 
 ![5](https://user-images.githubusercontent.com/42282006/80853422-ccac0100-8bfe-11ea-8c4c-2326c0de7379.png)
+
+# [Train]()
+
+python main.py /path/to/cardiac_dataset \
+  --task seg \
+  --model condenseunet \
+  --num-classes 4 \
+  --img-size 128 \
+  --epochs 150 \
+  --batch-size 4 \
+  --lr 1e-3 \
+  --lr-type cosine \
+  --momentum 0.9 \
+  --weight-decay 1e-4 \
+  --workers 2 \
+  --bottleneck 4 \
+  --group-1x1 4 \
+  --group-3x3 4 \
+  --gpu 0
+
 
 
 # [Results]()
